@@ -1,5 +1,6 @@
-import 'package:aym/pages/game_info_page.dart';
 import 'package:flutter/material.dart';
+
+import 'game_info_page.dart';
 
 class AddPlayerPage extends StatefulWidget {
   AddPlayerPage({Key key, this.title}) : super(key: key);

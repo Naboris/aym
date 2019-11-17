@@ -1,5 +1,6 @@
-import 'package:aym/pages/countdown_pages.dart';
 import 'package:flutter/material.dart';
+
+import 'countdown_pages.dart';
 
 class GameInfoPage extends StatefulWidget {
   final List joueurs;
