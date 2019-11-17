@@ -11,7 +11,6 @@ class AddPlayerPage extends StatefulWidget {
 
 class _AddPlayerPageState extends State<AddPlayerPage> {
   List joueurs = <String>[];
-  int _counter = 0;
 
   final myController = TextEditingController();
 
@@ -56,7 +55,9 @@ class _AddPlayerPageState extends State<AddPlayerPage> {
                     padding: EdgeInsets.all(2.0),
                     splashColor: Colors.purpleAccent,
                     onPressed: () {
-                      joueurs.add(myController.text);
+                      setState(() {
+                        joueurs.add(myController.text);
+                      });
                     },
                     child: Text(
                       "+",
@@ -64,7 +65,7 @@ class _AddPlayerPageState extends State<AddPlayerPage> {
                     ),
                   ),
                   Text(
-                    '$_counter',
+                    '${joueurs.length}',
                     style: Theme.of(context).textTheme.display1,
                   ),
                 ]),
@@ -78,7 +79,6 @@ class _AddPlayerPageState extends State<AddPlayerPage> {
                   padding: EdgeInsets.all(2.0),
                   splashColor: Colors.purpleAccent,
                   onPressed: () {
-                    _incrementCounter();
                     _pushSaved();
                   },
                   child: Text(
@@ -102,12 +102,6 @@ class _AddPlayerPageState extends State<AddPlayerPage> {
         },
       ),
     );
-  }
-
-  void _incrementCounter() {
-    return setState(() {
-      _counter++;
-    });
   }
 
   Widget _listeJoueurs() {
