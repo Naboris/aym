@@ -3,9 +3,17 @@ import 'package:flutter/material.dart';
 
 class GameInfoPage extends StatefulWidget {
   final List joueurs;
+  final List dropdownValue;
+  final List etats;
+  final List roles;
+  final List pseudos;
   GameInfoPage({
     Key key,
     this.joueurs,
+    this.dropdownValue,
+    this.etats,
+    this.roles,
+    this.pseudos,
   }) : super(key: key);
 
   @override
@@ -27,30 +35,21 @@ class _GameInfoPageState extends State<GameInfoPage> {
     "Alarmiste",
     "Pandore",
   ];
-  final myController = TextEditingController();
-  List<String> dropdownValue;
-  List<bool> etat;
-  List<bool> role;
+  List myControllers;
 
   @override
   void initState() {
-    dropdownValue = List.generate(widget.joueurs.length, (i) {
-      return "Demon";
-    });
-    etat = List.generate(widget.joueurs.length, (i) {
-      return false;
-    });
-    role = List.generate(widget.joueurs.length, (i) {
-      return false;
-    });
-
+    myControllers =
+        List.generate(widget.joueurs.length, (_) => TextEditingController());
     super.initState();
   }
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    myController.dispose();
+    for (TextEditingController controller in myControllers) {
+      controller.dispose();
+    }
     super.dispose();
   }
 
@@ -82,14 +81,27 @@ class _GameInfoPageState extends State<GameInfoPage> {
                               Text(widget.joueurs[i])),
                           DataCell(
                             //pseudo
-                            TextField(),
+                            TextField(
+                              controller: myControllers[i]
+                                ..text = widget.pseudos[i] ?? widget.pseudos[i]
+                                ..selection = TextSelection.collapsed(
+                                  offset: widget.pseudos[i] != null
+                                      ? widget.pseudos[i].length
+                                      : 0,
+                                ),
+                              onChanged: (value) {
+                                setState(() {
+                                  widget.pseudos[i] = value;
+                                });
+                              },
+                            ),
                             showEditIcon: true,
                             placeholder: true,
                           ),
                           DataCell(
                             //rôle
                             new DropdownButton<String>(
-                              value: dropdownValue[i],
+                              value: widget.dropdownValue[i],
                               icon: Icon(Icons.arrow_downward),
                               iconSize: 24,
                               elevation: 16,
@@ -100,7 +112,7 @@ class _GameInfoPageState extends State<GameInfoPage> {
                               ),
                               onChanged: (String newValue) {
                                 setState(() {
-                                  dropdownValue[i] = newValue;
+                                  widget.dropdownValue[i] = newValue;
                                 });
                               },
                               items: allRoles.map<DropdownMenuItem<String>>(
@@ -114,19 +126,19 @@ class _GameInfoPageState extends State<GameInfoPage> {
                           ),
                           DataCell(//Etat
                               Checkbox(
-                            value: etat[i],
+                            value: widget.etats[i],
                             onChanged: (bool value) {
                               setState(() {
-                                etat[i] = value;
+                                widget.etats[i] = value;
                               });
                             },
                           )),
                           DataCell(//Rôle donné ?
                               Checkbox(
-                            value: role[i],
+                            value: widget.roles[i],
                             onChanged: (bool value) {
                               setState(() {
-                                role[i] = value;
+                                widget.roles[i] = value;
                               });
                             },
                           )),
