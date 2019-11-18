@@ -1,4 +1,4 @@
-import 'package:aym/pages/add_player_page.dart';
+import 'package:aym/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.purple,
       ),
-      home: AddPlayerPage(title: 'Aym'),
+      home: HomePage(title: 'Aym'),
     );
   }
 }
