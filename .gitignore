@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/flutter,intellij
-# Edit at https://www.gitignore.io/?templates=flutter,intellij
+# Created by https://www.gitignore.io/api/flutter,intellij,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=flutter,intellij,visualstudiocode
 
 ### Flutter ###
 # Flutter/Dart/Pub related
@@ -142,4 +142,15 @@ fabric.properties
 .idea/**/markdown-navigator.xml
 .idea/**/markdown-navigator/
 
-# End of https://www.gitignore.io/api/flutter,intellij
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.gitignore.io/api/flutter,intellij,visualstudiocode
